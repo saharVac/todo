@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+// import { BrowserRouter as Router, Route } from "react-router-dom"
 import './App.css';
+import React, { useRef } from 'react'
 
 function App() {
+
+  const duration = useRef()
+  const task = useRef()
+
+  const addSub = () => {
+    const subtask = document.createElement('input')
+    subtask.className = 'subtask'
+    document.getElementById('subtasks').append(subtask)
+  }
+
+  const addTask = () => {
+
+    if (duration.current.value && task.current.value) {
+      // store task
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section id="main-area">
+        Task:  <input type="text" ref={task} />
+        <br/><br/>
+        Duration (minutes): <input type="number" ref={duration} />
+        <br/><br/>
+        <div id="subtasks"></div>
+        <button onClick={() => {
+          console.log('adding')
+          addSub()
+          }} id="add_sub">+ Add Subtask</button>
+        <button onClick={() => addTask()}>Add Task</button>
+      </section>
     </div>
   );
 }
