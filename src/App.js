@@ -9,9 +9,7 @@ function App() {
 
   const addSub = () => {
     let canAdd = true
-    console.log(document.getElementsByClassName('subtask'))
     const subLength = document.getElementsByClassName('subtask').length
-    console.log('sub length:', subLength)
     const subtask = document.createElement('input')
     subtask.classList.add('subtask')
     if (!subLength) {
@@ -19,9 +17,7 @@ function App() {
     } else {
       const lastSubNum = subLength
       const nextSubNum = subLength + 1
-      console.log('some subs, adding', 'subtask-', nextSubNum.toString())
       // if last subtask is empty, dont add another
-      console.log('last sub:', 'subtask-' + lastSubNum.toString())
       const lastSub = document.getElementById('subtask-' + lastSubNum.toString())
       if (!lastSub.value) {
         canAdd = false
@@ -44,10 +40,12 @@ function App() {
   return (
     <div className="App">
       <section id="main-area">
-        Task:  <input type="text" ref={task} />
-        <br/><br/>
-        Duration (minutes): <input type="number" ref={duration} />
-        <br/><br/>
+        <div>
+          Task:  <input type="text" ref={task} />
+        </div>
+        <div>
+          Duration (minutes): <input type="number" ref={duration} />
+        </div>
         <div id="subtasks"></div>
         <button onClick={() => addSub()} id="add_sub">+ Add Subtask</button>
         <button onClick={() => addTask()}>Add Task</button>
