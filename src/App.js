@@ -1,11 +1,16 @@
 // import { BrowserRouter as Router, Route } from "react-router-dom"
 import './App.css';
-import React, { useRef } from 'react'
+import $ from 'jquery'
+import React, { useRef, useState } from 'react'
 
 function App() {
 
   const duration = useRef()
   const task = useRef()
+
+  const [todoData, setTodos] = useState({
+    todos: []
+  })
 
   const addSub = () => {
     let canAdd = true
@@ -31,9 +36,21 @@ function App() {
   }
 
   const addTask = () => {
-
-    if (duration.current.value && task.current.value) {
+    const durationVal = $('#duration-input').val()
+    const taskVal = $('#task-input').val()
+    if (durationVal && taskVal) {
+      // get all subtasks
+      let subtasks = []
+      $('.subtask').each((index, subtask) => {
+        subtasks.push(subtask.value)
+      })      
       // store task
+      console.log("Task", taskVal, "Duration", durationVal, "subtasks", subtasks)
+      setTodos({...todoData, todos: [...todoData.todos, {
+        task: taskVal,
+        duration: durationVal,
+        subtasks: subtasks
+      }]})
     }
   }
 
@@ -41,10 +58,10 @@ function App() {
     <div className="App">
       <section id="main-area">
         <div>
-          Task:  <input type="text" ref={task} />
+          Task:  <input type="text" id="task-input" ref={task} />
         </div>
         <div>
-          Duration (minutes): <input type="number" ref={duration} />
+          Duration (minutes): <input type="number" id="duration-input" ref={duration} />
         </div>
         <div id="subtasks"></div>
         <button onClick={() => addSub()} id="add_sub">+ Add Subtask</button>
