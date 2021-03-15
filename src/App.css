@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
 }
@@ -18,7 +22,38 @@ body {
   height: 100%;
 }
 
-#main-area {
-  padding-top: 10%;
-  height: 20%;
+#input-area {
+  width: 95%;
+  margin: auto;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.input-section {
+  margin: auto;
+}
+
+.input-section label {
+  text-align: left;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-section input {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+#add-sub {
+  width: 100%;
+  background: none;
+  text-align: left;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-bottom: 10px;
+}
+
+#add-task {
+  width: 100%;
 }

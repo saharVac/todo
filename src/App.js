@@ -18,6 +18,7 @@ function App() {
     const subtask = document.createElement('input')
     subtask.classList.add('subtask')
     if (!subLength) {
+      $('#subtasks').append($('<label>Subtasks: </label>'))
       subtask.id = 'subtask-1'
     } else {
       const lastSubNum = subLength
@@ -30,7 +31,7 @@ function App() {
       subtask.id = 'subtask-' + nextSubNum.toString()
     }
     if (canAdd) {
-      document.getElementById('subtasks').append(subtask)
+      $('#subtasks').append(subtask)
     }
     
   }
@@ -59,16 +60,23 @@ function App() {
 
   return (
     <div className="App">
-      <section id="main-area">
-        <div>
-          Task:  <input type="text" id="task-input" ref={task} />
-        </div>
-        <div>
-          Duration (minutes): <input type="number" id="duration-input" ref={duration} />
-        </div>
-        <div id="subtasks"></div>
-        <button onClick={() => addSub()} id="add_sub">+ Add Subtask</button>
-        <button onClick={() => addTask()}>Add Task</button>
+      <header>
+          <h1>Todos</h1>
+        </header>
+      <section id="input-area">
+        <section className="input-section">
+          <label>Task: </label>
+          <input type="text" id="task-input" ref={task} />
+        </section>
+        <section className="input-section">
+          <label>Duration (minutes): </label>
+          <input type="number" id="duration-input" ref={duration} />
+        </section>
+        <section className="input-section">
+          <div id="subtasks"></div>
+          <button onClick={() => addSub()} id="add-sub">+ Add Subtask</button>
+        </section>
+        <button onClick={() => addTask()} id="add-task">Add Task</button>
       </section>
     </div>
   );
