@@ -45,12 +45,15 @@ function App() {
         subtasks.push(subtask.value)
       })      
       // store task
-      console.log("Task", taskVal, "Duration", durationVal, "subtasks", subtasks)
       setTodos({...todoData, todos: [...todoData.todos, {
         task: taskVal,
         duration: durationVal,
-        subtasks: subtasks
+        subtasks: subtasks,
       }]})
+      // clear fields
+      $('#task-input').val('')
+      $('#duration-input').val('')
+      $('#subtasks').html('')
     }
   }
 
